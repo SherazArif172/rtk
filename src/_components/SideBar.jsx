@@ -65,8 +65,8 @@ export default function AppSidebar() {
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
+        <SidebarTrigger />
       </Sidebar>
-      <SidebarTrigger />
     </SidebarProvider>
   );
 }

@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchTodos = createAsyncThunk("fetchTodos", async () => {
+export const fetchPost = createAsyncThunk("fetchTodos", async () => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
 
   return res.json();
 });
 
-export const fetchTodoById = createAsyncThunk("fetchTodoById", async (id) => {
+export const fetchPostById = createAsyncThunk("fetchTodoById", async (id) => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
   return res.json();
 });
@@ -21,32 +21,32 @@ const dataSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(fetchTodos.pending, (state, action) => {
+    builder.addCase(fetchPost.pending, (state, action) => {
       state.isLoading = true;
     });
 
-    builder.addCase(fetchTodos.fulfilled, (state, action) => {
+    builder.addCase(fetchPost.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
     });
 
-    builder.addCase(fetchTodos.rejected, (state, action) => {
+    builder.addCase(fetchPost.rejected, (state, action) => {
       state.isError = true;
       console.log(Error);
     });
 
     // Single Post
 
-    builder.addCase(fetchTodoById.pending, (state, action) => {
+    builder.addCase(fetchPostById.pending, (state, action) => {
       state.isLoading = true;
     });
 
-    builder.addCase(fetchTodoById.fulfilled, (state, action) => {
+    builder.addCase(fetchPostById.fulfilled, (state, action) => {
       state.isLoading = false;
       state.singleData = action.payload;
     });
 
-    builder.addCase(fetchTodoById.rejected, (state, action) => {
+    builder.addCase(fetchPostById.rejected, (state, action) => {
       state.isError = true;
       console.log(Error);
     });
